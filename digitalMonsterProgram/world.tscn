@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://blk2h7affnytt"]
+
+[ext_resource type="Script" uid="uid://dgfelhdoqffqd" path="res://digimon.gd" id="1_f3sb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3sb7"]
+
+[node name="World" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.13, 4.13)
+
+[node name="Digimon" type="StaticBody2D" parent="."]
+script = ExtResource("1_f3sb7")
+species_key = "bota"
+metadata/_custom_type_script = "uid://dgfelhdoqffqd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Digimon"]
+shape = SubResource("CircleShape2D_f3sb7")
