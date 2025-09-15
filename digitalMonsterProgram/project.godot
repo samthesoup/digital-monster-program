@@ -14,6 +14,10 @@ config/name="Digital Monster Program"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Species="*res://species.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -29,8 +29,8 @@ enum FLD { # digimon's prefered environment
 }
 
 
-# [ name , level , attribute, fields, weight]
 
-var digindex = {
+# [ name , level , attribute, fields, weight]
+var digidict = {
 	"bota" : ["BOTAMON", LVL.BABYI, ATRBT.FREE, [FLD.NSP, FLD.VB], 5]
 } 
