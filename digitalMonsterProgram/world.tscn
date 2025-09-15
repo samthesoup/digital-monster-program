@@ -1,6 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://blk2h7affnytt"]
+[gd_scene load_steps=4 format=3 uid="uid://blk2h7affnytt"]
 
 [ext_resource type="Script" uid="uid://dgfelhdoqffqd" path="res://digimon.gd" id="1_f3sb7"]
+
+[sub_resource type="GDScript" id="GDScript_f3sb7"]
+script/source = "extends Camera2D
+
+@export var cam_speed = 0.5
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_pressed(\"ui_left\"):
+		position.x -= cam_speed
+	if Input.is_action_pressed(\"ui_right\"):
+		position.x += cam_speed
+	if Input.is_action_pressed(\"ui_up\"):
+		position.y -= cam_speed
+	if Input.is_action_pressed(\"ui_down\"):
+		position.y += cam_speed
+	if Input.is_action_pressed(\"lmb\"):
+		zoom += Vector2(0.1,0.1)
+	if Input.is_action_pressed(\"rmb\"):
+		zoom -= Vector2(0.1,0.1)
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3sb7"]
 
@@ -8,10 +34,12 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4.13, 4.13)
+script = SubResource("GDScript_f3sb7")
 
 [node name="Digimon" type="StaticBody2D" parent="."]
 script = ExtResource("1_f3sb7")
 species_key = "bota"
+random_gene = true
 metadata/_custom_type_script = "uid://dgfelhdoqffqd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Digimon"]

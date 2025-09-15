@@ -3,7 +3,8 @@ extends StaticBody2D
 class_name Digimon
 
 @export var species_key : String # key for identifying digimon's species in digidict
-@export var gene : int = 10000000000000 # the random value determining various aspects of the digimon
+@export_range(10000000000000,99999999999999,1.0) var gene : int  # the random value determining various aspects of the digimon
+@export var random_gene : bool
 var age : int = 0 # age of the digimon in hours
 var mood : int = 128 # how happy the digimon is
 var hunger : int  = 0 # how hungry the digimon is
@@ -13,6 +14,8 @@ var color_mod : Color # random hue shift determined randomly
 var activity : int # how much the digimon moves around
 
 func _ready() -> void:
+	if random_gene:
+		gene = randi_range(10000000000000,99999999999999)
 	var species = Species.digidict[species_key]
 	weight_mod = get_gene(gene,1,0)
 	var noct_gene = get_gene(gene,2,1)
@@ -31,8 +34,8 @@ func _ready() -> void:
 	
 	var spr = Sprite2D.new()
 	spr.texture = load(species[5])
+	spr.modulate = color_mod
 	add_child(spr)
-	print("digimon ready")
 
 func get_gene(g, count, offset):
 	var shift = 10^offset
