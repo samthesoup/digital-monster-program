@@ -3,21 +3,27 @@ extends StaticBody2D
 class_name Digimon
 
 @export var species_key : String # key for identifying digimon's species in digidict
-@export_range(10000000000000,99999999999999,1.0) var gene : int  # the random value determining various aspects of the digimon
-@export var random_gene : bool
+var gene : int  # the random value determining various aspects of the digimon
 var age : int = 0 # age of the digimon in hours
 var mood : int = 128 # how happy the digimon is
 var hunger : int  = 0 # how hungry the digimon is
 var weight_mod : int # how heavy the digimon is from it's base
+var weight : int # digimons weight
 var nocturnal : bool # wether the digimon sleeps in the day or night
 var color_mod : Color # random hue shift determined randomly
 var activity : int # how much the digimon moves around
 
+var target_direction : Vector2
+
+func _init(sp, ge):
+	species_key = sp
+	gene = ge
+
 func _ready() -> void:
-	if random_gene:
-		gene = randi_range(10000000000000,99999999999999)
+	seed(gene)
 	var species = Species.digidict[species_key]
 	weight_mod = get_gene(gene,1,0)
+	weight = weight + weight_mod
 	var noct_gene = get_gene(gene,2,1)
 	var red_gene = get_gene(gene,3,3)
 	var green_gene = get_gene(gene,3,6)
@@ -27,15 +33,21 @@ func _ready() -> void:
 		nocturnal = true
 	else :
 		nocturnal = false
-	
 	color_mod = Color(red_gene%256, green_gene%256, blue_gene%256)
-	
 	activity = act_gene + 1
 	
 	var spr = Sprite2D.new()
 	spr.texture = load(species[5])
 	spr.modulate = color_mod
 	add_child(spr)
+	
+	var shape = CollisionShape2D.new()
+	shape.shape = CircleShape2D.new()
+	add_child(shape)
+
+func _process(delta: float) -> void:
+	target_direction = Vector2(randf_range(-1.0,1.0), randf_range(-1.0,1.0))
+	move_and_collide(target_direction)
 
 func get_gene(g, count, offset):
 	var shift = 10^offset

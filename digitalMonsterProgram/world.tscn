@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://blk2h7affnytt"]
 
-[ext_resource type="Script" uid="uid://dgfelhdoqffqd" path="res://digimon.gd" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://csvcxgke0058k" path="res://digiegg.gd" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://c6tqni0psp63b" path="res://digiegg.png" id="1_fj7yv"]
 
 [sub_resource type="GDScript" id="GDScript_f3sb7"]
 script/source = "extends Camera2D
@@ -28,19 +29,31 @@ func _process(delta: float) -> void:
 		zoom -= Vector2(0.1,0.1)
 "
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f3sb7"]
-
 [node name="World" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4.13, 4.13)
 script = SubResource("GDScript_f3sb7")
 
-[node name="Digimon" type="StaticBody2D" parent="."]
+[node name="digiegg" type="Sprite2D" parent="."]
+texture = ExtResource("1_fj7yv")
 script = ExtResource("1_f3sb7")
-species_key = "bota"
+digimon_inside = "bota"
 random_gene = true
-metadata/_custom_type_script = "uid://dgfelhdoqffqd"
+metadata/_custom_type_script = "uid://csvcxgke0058k"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Digimon"]
-shape = SubResource("CircleShape2D_f3sb7")
+[node name="digiegg3" type="Sprite2D" parent="."]
+position = Vector2(-27, 0)
+texture = ExtResource("1_fj7yv")
+script = ExtResource("1_f3sb7")
+digimon_inside = "bota"
+random_gene = true
+metadata/_custom_type_script = "uid://csvcxgke0058k"
+
+[node name="digiegg2" type="Sprite2D" parent="."]
+position = Vector2(23, 0)
+texture = ExtResource("1_fj7yv")
+script = ExtResource("1_f3sb7")
+digimon_inside = "bota"
+random_gene = true
+metadata/_custom_type_script = "uid://csvcxgke0058k"
