@@ -32,5 +32,5 @@ enum FLD { # digimon's prefered environment
 
 # [ name , level , attribute, fields, weight, sprite]
 var digidict = {
-	"bota" : ["BOTAMON", LVL.BABYI, ATRBT.FREE, [FLD.NSP, FLD.VB], 5, "res://botamon.png"]
+	"bota" : ["BOTAMON", LVL.BABYI, ATRBT.FREE, [FLD.NSP, FLD.VB], 5.0, "res://botamon.png"]
 } 

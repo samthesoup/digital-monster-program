@@ -26,32 +26,17 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed(\"lmb\"):
 		zoom += Vector2(0.1,0.1)
 	if Input.is_action_pressed(\"rmb\"):
-		zoom -= Vector2(0.1,0.1)
+		if zoom.x > 0.2:
+			zoom -= Vector2(0.1,0.1)
 "
 
 [node name="World" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.13, 4.13)
 script = SubResource("GDScript_f3sb7")
+cam_speed = 1.0
 
 [node name="digiegg" type="Sprite2D" parent="."]
-texture = ExtResource("1_fj7yv")
-script = ExtResource("1_f3sb7")
-digimon_inside = "bota"
-random_gene = true
-metadata/_custom_type_script = "uid://csvcxgke0058k"
-
-[node name="digiegg3" type="Sprite2D" parent="."]
-position = Vector2(-27, 0)
-texture = ExtResource("1_fj7yv")
-script = ExtResource("1_f3sb7")
-digimon_inside = "bota"
-random_gene = true
-metadata/_custom_type_script = "uid://csvcxgke0058k"
-
-[node name="digiegg2" type="Sprite2D" parent="."]
-position = Vector2(23, 0)
 texture = ExtResource("1_fj7yv")
 script = ExtResource("1_f3sb7")
 digimon_inside = "bota"
